@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="https://bytegrad.com/course-assets/js/2/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="index.css">
+
+    <script src="index.js" defer type="module"></script>
+
+    <title>rmtDev -- Find your remote developer job</title>
+</head>
+
+<body class="body">
+
+    <div class="background">
+        <img src="https://bytegrad.com/course-assets/js/2/pattern.svg" alt="Background pattern" class="background__pattern">
+    </div>
+
+    <header class="header">
+        <div class="header__top">
+            <a href="." class="logo">
+                <img src="https://bytegrad.com/course-assets/js/2/logo.svg" alt="Logo" class="logo__img">
+            </a>
+            <button class="bookmarks-btn">Bookmarks <i class="fa-solid fa-caret-down bookmarks-btn__icon"></i></button>
+            <ul class="job-list job-list--bookmarks">
+
+            </ul>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="intro">
+            <h1 class="first-heading">Find your <span class="u-bold">remote developer</span> job</h1>
+            <form action="#" class="search">
+                <button type="submit" class="search__submit-btn">
+                    <i class="fa-solid fa-magnifying-glass search__icon"></i>
+                </button>   
+                <input class="search__input" spellcheck="false" type="text" required placeholder="Find remote developer jobs...">
+            </form>
+        </section>
+
+        <div class="container">
+            <section class="search-results">
+                <div class="spinner spinner--search spinner--hidden"></div>
+
+                <div class="search-results__top">
+                    <p class="count">
+                        <span class="count__number u-bold">0</span> results
+                    </p>
+
+                    <section class="sorting">
+                        <i class="fa-solid fa-arrow-down-short-wide sorting__icon"></i>
+                        <button class="sorting__button sorting__button--relevant sorting__button--active">Relevant</button>
+                        <button class="sorting__button sorting__button--recent">Recent</button>
+                    </section>
+                </div>
+
+                <ul class="job-list job-list--search">
+
+                </ul>
+
+                <section class="pagination">
+                    <button class="pagination__button pagination__button--back pagination__button--hidden">
+                        <i class="fa-solid fa-arrow-left pagination__icon"></i> 
+                        Page <span class="pagination__number pagination__number--back">1</span>
+                    </button>
+                    <button class="pagination__button pagination__button--next">
+                        Page <span class="pagination__number pagination__number--next">2</span> 
+                        <i class="fa-solid fa-arrow-right pagination__icon"></i>
+                    </button>
+                </section>
+            </section>
+
+            <section class="job-details">
+                <div class="spinner spinner--job-details"></div>
+
+                <div class="job-details__content">
+            
+                    <div class="job-details__start-view">
+                        <p class="job-details__start-text job-details__start-text--big">What are you looking for?</p>
+                        <p class="job-details__start-text job-details__start-text">Start by searching for any technology
+                            your ideal job is working with</p>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <small class="copyright">
+            <p class="copyright__text">© Copyright by <a href="https://bytegrad.com" class="copyright__link"
+                    target="_blank">ByteGrad.com</a> <i class="fa-solid fa-square-up-right copyright__icon"></i>
+                Intended for learning or your portfolio.</p>
+            <p class="copyright__text"><span class="u-bold u-italic">Not allowed</span> to use as your own teaching
+                material.</p>
+        </small>
+        <p class="jobs-available"><span class="u-bold">109573</span> total jobs available</p>
+    </footer>
+
+    <section class="error">
+        <i class="fa-solid fa-circle-exclamation error__icon"></i>
+        <div class="error__right">
+            <p class="error__title">Something went wrong</p>
+            <p class="error__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </section>
+
+</body>
+
+</html>

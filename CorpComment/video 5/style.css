@@ -494,6 +494,7 @@ button {
 
 .hashtags__item {
     max-width: max-content;
+    margin-bottom: 11px;
 }
 
 /* HASHTAG */
@@ -505,7 +506,6 @@ button {
     padding: 7px 14px 9px;
     background-color: rgba(255, 255, 255, 0.06);
     border-radius: 500px;
-    margin-bottom: 11px;
     cursor: pointer;
     transition: all 0.2s;
 }

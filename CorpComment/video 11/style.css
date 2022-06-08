@@ -493,8 +493,8 @@ button {
 }
 
 .hashtags__item {
-    max-width: max-content;
     margin-bottom: 11px;
+    max-width: max-content;
 }
 
 /* HASHTAG */
