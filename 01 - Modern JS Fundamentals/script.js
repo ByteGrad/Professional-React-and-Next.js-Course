@@ -12,6 +12,7 @@
 
 
 // -- traditional functions vs arrow functions --
+
 // function calculatePrice(sqMeters) {
 //     return 1000 + sqMeters;
 // }
@@ -42,7 +43,7 @@
 //     console.log('blabla');
 // }
 
-// price > 3000 ? console.log('hello') : console.log('blabla');
+// price > 3000 ? console.log('expensive') : console.log('cheap');
 
 
 // -- manipulating HTML and CSS --
