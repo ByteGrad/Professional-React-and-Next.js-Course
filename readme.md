@@ -1,4 +1,4 @@
-# Professional JavaScript Course -- [See course here](https://www.udemy.com/course/professional-javascript-course/)
+# Professional JavaScript Course -- [See course here](https://www.udemy.com/course/professional-javascript-course/?referralCode=0C1D5752923168BC87C2)
 
 **You can find the final code for each video in the project folders here**. Use that if you get stuck. There is also a bugs file, a slides file and a readme file (you're reading it right now).
 
