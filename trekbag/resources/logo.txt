@@ -1,0 +1,1 @@
+"https://bytegrad.com/course-assets/react-nextjs/dots.png"

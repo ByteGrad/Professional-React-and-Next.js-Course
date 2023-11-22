@@ -1,0 +1,5 @@
+<link
+    rel="icon"
+    type="image/svg+xml"
+    href="https://bytegrad.com/course-assets/js/1/favicon.png"
+/>
