@@ -1,7 +1,0 @@
-Welcome to the course!
-
-We will build some beautiful projects in this course. Sometimes, you will have to copy-paste an image URL or something else. You can find all those resources in a 'resources.txt' file in the folder for the project.
-
-Glad to have you on board, let's get started!
-
-Wesley
