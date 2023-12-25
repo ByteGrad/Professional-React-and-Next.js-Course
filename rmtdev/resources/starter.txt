@@ -1,1 +1,1 @@
-https://github.com/ByteGrad/starter-rmtdev
+Go to this url to see the complete starter: https://github.com/ByteGrad/starter-rmtdev
