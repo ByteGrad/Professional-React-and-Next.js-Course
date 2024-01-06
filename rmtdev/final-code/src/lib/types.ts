@@ -1,29 +1,24 @@
-export type SortBy = "relevant" | "recent";
-
 export type JobItem = {
   id: number;
-  title: string;
   badgeLetters: string;
+  title: string;
   company: string;
+  date: string;
   relevanceScore: number;
   daysAgo: number;
-  coverImgURL: string;
-  companyURL: string;
-  duration: string;
-  salary: string;
-  location: string;
-  description: string;
-  qualifications: string[];
-  reviews: string[];
 };
 
 export type JobItemExpanded = JobItem & {
   description: string;
   qualifications: string[];
   reviews: string[];
+  duration: string;
   location: string;
   salary: string;
-  duration: string;
+  coverImgURL: string;
+  companyURL: string;
 };
 
-export type JobItemId = JobItem["id"];
+export type PageDirection = "next" | "previous";
+
+export type SortBy = "relevant" | "recent";

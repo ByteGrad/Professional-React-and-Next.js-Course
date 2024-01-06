@@ -1,22 +1,15 @@
-import { useActiveIdContext } from "../contexts/ActiveIdContextProvider";
-import { useJobItem } from "../lib/hooks";
-import { urlContainsHashId } from "../lib/utils";
+import { useActiveIdContext, useJobItem } from "../lib/hooks";
 import BookmarkIcon from "./BookmarkIcon";
 import Spinner from "./Spinner";
 
 export default function JobItemContent() {
-  const { activeJobItemId } = useActiveIdContext();
-  const [jobItem, isLoading] = useJobItem(activeJobItemId);
+  const { activeId } = useActiveIdContext();
+  const { jobItem, isLoading } = useJobItem(activeId);
 
-  if (isLoading && urlContainsHashId()) {
+  if (isLoading) {
     return <LoadingJobContent />;
   }
 
-  if ((!isLoading && !jobItem) || (!isLoading && !urlContainsHashId())) {
-    return <EmptyJobContent />;
-  }
-
-  // to ensure to typescript that jobItem is not null below this
   if (!jobItem) {
     return <EmptyJobContent />;
   }
@@ -36,7 +29,7 @@ export default function JobItemContent() {
             <div className="job-info__below-badge">
               <time className="job-info__time">{jobItem.daysAgo}d</time>
 
-              <BookmarkIcon jobItemId={jobItem.id} />
+              <BookmarkIcon id={jobItem.id} />
             </div>
           </div>
 
@@ -70,15 +63,11 @@ export default function JobItemContent() {
               </p>
             </div>
             <ul className="qualifications__list">
-              {/* {jobItem.qualifications.map((qualificationText, index) => (
-                // careful with key=index, it's not recommended
-                <li key={index} className="qualifications__item">
-                  {qualificationText}
+              {jobItem.qualifications.map((qualification) => (
+                <li key={qualification} className="qualifications__item">
+                  {qualification}
                 </li>
-              ))} */}
-              <li className="qualifications__item">Test</li>
-              <li className="qualifications__item">Test</li>
-              <li className="qualifications__item">Test</li>
+              ))}
             </ul>
           </section>
 
@@ -90,10 +79,9 @@ export default function JobItemContent() {
               </p>
             </div>
             <ul className="reviews__list">
-              {jobItem.reviews.map((reviewText, index) => (
-                // careful with key=index, it's not recommended
-                <li key={index} className="reviews__item">
-                  {reviewText}
+              {jobItem.reviews.map((review) => (
+                <li key={review} className="reviews__item">
+                  {review}
                 </li>
               ))}
             </ul>

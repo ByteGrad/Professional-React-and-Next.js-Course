@@ -1,15 +1,14 @@
-// use portal so that the bookmarks list is not affected by the z-index of the header
-import { createPortal } from "react-dom";
-import JobListBookmarks from "./JobList/JobListBookmarks";
 import { forwardRef } from "react";
+import { useBookmarksContext } from "../lib/hooks";
+import JobList from "./JobList";
+import { createPortal } from "react-dom";
 
-const BookmarksPopover = forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(function (_, ref) {
+const BookmarksPopover = forwardRef<HTMLDivElement>(function (_, ref) {
+  const { bookmarkedJobItems, isLoading } = useBookmarksContext();
+
   return createPortal(
     <div ref={ref} className="bookmarks-popover">
-      <JobListBookmarks />
+      <JobList jobItems={bookmarkedJobItems} isLoading={isLoading} />
     </div>,
     document.body
   );

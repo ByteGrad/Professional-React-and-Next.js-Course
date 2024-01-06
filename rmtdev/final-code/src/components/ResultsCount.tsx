@@ -1,4 +1,4 @@
-import { useJobItemsContext } from "../contexts/JobItemsContextProvider";
+import { useJobItemsContext } from "../lib/hooks";
 
 export default function ResultsCount() {
   const { totalNumberOfResults } = useJobItemsContext();

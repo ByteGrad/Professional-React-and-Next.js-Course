@@ -1,4 +1,4 @@
-import { useJobItemsContext } from "../../contexts/JobItemsContextProvider";
+import { useJobItemsContext } from "../lib/hooks";
 import JobList from "./JobList";
 
 export default function JobListSearch() {

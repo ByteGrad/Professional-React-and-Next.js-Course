@@ -2,16 +2,16 @@ import Background from "./Background";
 import Container from "./Container";
 import Footer from "./Footer";
 import Header, { HeaderTop } from "./Header";
-import Sidebar, { SidebarTop } from "./Sidebar";
-import { Toaster } from "react-hot-toast";
-import ResultsCount from "./ResultsCount";
-import Sorting from "./SortingControls";
-import Pagination from "./PaginationControls";
-import JobItemContent from "./JobItemContent";
+import BookmarksButton from "./BookmarksButton";
 import Logo from "./Logo";
-import Bookmarks from "./BookmarksButton";
-import JobListSearch from "./JobList/JobListSearch";
 import SearchForm from "./SearchForm";
+import JobItemContent from "./JobItemContent";
+import Sidebar, { SidebarTop } from "./Sidebar";
+import PaginationControls from "./PaginationControls";
+import ResultsCount from "./ResultsCount";
+import SortingControls from "./SortingControls";
+import { Toaster } from "react-hot-toast";
+import JobListSearch from "./JobListSearch";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
       <Header>
         <HeaderTop>
           <Logo />
-          <Bookmarks />
+          <BookmarksButton />
         </HeaderTop>
 
         <SearchForm />
@@ -31,12 +31,12 @@ function App() {
         <Sidebar>
           <SidebarTop>
             <ResultsCount />
-            <Sorting />
+            <SortingControls />
           </SidebarTop>
 
           <JobListSearch />
 
-          <Pagination />
+          <PaginationControls />
         </Sidebar>
 
         <JobItemContent />

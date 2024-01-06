@@ -1,41 +1,26 @@
-import React, { createContext, useContext, useMemo } from "react";
-import { JobItemId } from "../lib/types";
+import { createContext } from "react";
 import { useActiveId } from "../lib/hooks";
 
-type ActiveIdProviderProps = {
-  children: React.ReactNode;
-};
-
 type ActiveIdContext = {
-  activeJobItemId: JobItemId | null;
+  activeId: number | null;
 };
 
 export const ActiveIdContext = createContext<ActiveIdContext | null>(null);
 
 export default function ActiveIdContextProvider({
   children,
-}: ActiveIdProviderProps) {
-  const activeJobItemId = useActiveId();
-
-  const contextValue = useMemo(
-    () => ({
-      activeJobItemId,
-    }),
-    [activeJobItemId]
-  );
+}: {
+  children: React.ReactNode;
+}) {
+  const activeId = useActiveId();
 
   return (
-    <ActiveIdContext.Provider value={contextValue}>
+    <ActiveIdContext.Provider
+      value={{
+        activeId,
+      }}
+    >
       {children}
     </ActiveIdContext.Provider>
   );
-}
-
-export function useActiveIdContext() {
-  const context = useContext(ActiveIdContext);
-
-  if (!context) {
-    throw new Error("ActiveIdContext must be used within an ActiveIdProvider");
-  }
-  return context;
 }
