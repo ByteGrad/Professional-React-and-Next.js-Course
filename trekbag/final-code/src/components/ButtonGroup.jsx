@@ -33,10 +33,9 @@ export default function ButtonGroup() {
       {secondaryButtons.map((button) => (
         <Button
           key={button.text + button.onClick.toString()}
-          text={button.text}
           onClick={button.onClick}
           buttonType="secondary"
-        />
+        >{button.text}</Button>
       ))}
     </section>
   );
