@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  all: unset;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  height: 100vh;
+  background-image: radial-gradient(ellipse, #385300, #212900);
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: #bef227;
+  width: 476px;
+  height: 615px;
+  border-radius: 12px;
+  box-shadow: 0 25px 121px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s;
+}
+
+.card--limit {
+  background-color: #a3d11b;
+}
+
+.title {
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 200px;
+  text-align: center;
+  line-height: 0.9;
+  font-weight: 500;
+  font-size: 32px;
+  margin-top: 60px;
+}
+
+.count {
+  color: #1d2507;
+  font-size: 200px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.reset-btn {
+  cursor: pointer;
+  opacity: 0.3;
+  transition: all 0.4s;
+}
+
+.reset-btn:hover,
+.reset-btn:focus {
+  opacity: 0.5;
+}
+
+.reset-btn-icon {
+  color: #1d2507;
+  height: 40px;
+  width: 40px;
+}
+
+.button-container {
+  background-color: #1d2507;
+  height: 116px;
+  width: 100%;
+  margin-top: auto;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+}
+
+.count-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.count-btn:first-child {
+  border-right: 1px solid rgba(189, 254, 0, 0.07);
+}
+
+.count-btn:hover,
+.count-btn:focus {
+  background-color: #212b06;
+}
+
+.count-btn--plus {
+  border-left: 1px solid rgba(189, 254, 0, 0.15);
+}
+
+.count-btn-icon {
+  color: #bdfe00;
+  opacity: 0.9;
+  height: 40px;
+  width: 40px;
+}
+
+@media (max-width: 680px) or (max-height: 730px) {
+  .card {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .title {
+    margin-top: 100px;
+  }
+
+  .buttons {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

@@ -1,0 +1,1 @@
+searchParams: { [key: string]: string | string[] | undefined };
