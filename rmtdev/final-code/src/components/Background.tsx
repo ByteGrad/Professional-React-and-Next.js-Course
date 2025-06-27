@@ -2,7 +2,7 @@ export default function Background() {
   return (
     <div className="background">
       <img
-        src="https://bytegrad.com/course-assets/images/rn-image-2.png"
+        src="https://bytegrad.com/course-assets/js/2/pattern.svg"
         alt="Background pattern"
       />
     </div>
