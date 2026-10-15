@@ -1,4 +1,4 @@
-> **Educational code and security — updated 15 October 2026**
+> **Educational code and security**
 >
 > These examples teach selected concepts and may omit controls required for production. Dependencies and runtimes become outdated over time. Before running or reusing an example, read [SECURITY.md](SECURITY.md), check current advisories, keep dependencies on supported patched versions, and test upgrades. Do not expose development servers or use real customer data or production credentials in a tutorial environment.
 >
