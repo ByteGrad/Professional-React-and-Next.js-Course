@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
 
 .state-effects {
   @apply hover:scale-105 focus:scale-105 active:scale-[1.02] transition;

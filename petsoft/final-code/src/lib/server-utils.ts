@@ -5,11 +5,20 @@ import { auth } from "./auth-no-edge";
 import { Pet, User } from "@prisma/client";
 import prisma from "./db";
 
-export async function checkAuth() {
+export async function checkAuth({ requireAccess = true } = {}) {
   const session = await auth();
-  if (!session?.user) {
+  if (!session?.user?.id) {
     redirect("/login");
   }
+
+  // Route middleware and JWT claims are not the authorization boundary.
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { id: true, hasAccess: true },
+  });
+  if (!user) redirect("/login");
+  if (requireAccess && !user.hasAccess) redirect("/payment");
+  session.user.hasAccess = user.hasAccess;
 
   return session;
 }

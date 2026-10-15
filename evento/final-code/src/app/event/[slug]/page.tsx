@@ -4,12 +4,13 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const slug = params.slug;
   const event = await getEvent(slug);
 
@@ -30,7 +31,8 @@ export async function generateStaticParams() {
   ];
 }
 
-export default async function EventPage({ params }: Props) {
+export default async function EventPage(props: Props) {
+  const params = await props.params;
   const slug = params.slug;
   const event = await getEvent(slug);
 

@@ -1,0 +1,73 @@
+name: Dependency and security checks
+'on':
+  push: {}
+  pull_request: {}
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - project: corp-comment/final-code
+          kind: app
+        - project: evento/final-code
+          kind: next
+        - project: fancy-counter/final-code
+          kind: app
+        - project: petsoft/final-code
+          kind: next
+        - project: rmtdev/final-code
+          kind: app
+        - project: trekbag/final-code
+          kind: app
+        - project: word-analytics/final-code
+          kind: app
+        - project: .
+          kind: tests
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    services:
+      postgres:
+        image: postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+        env:
+          POSTGRES_USER: course_fixture
+          POSTGRES_PASSWORD: isolated_ci_fixture_only
+          POSTGRES_DB: course_fixture
+        ports:
+        - 5432:5432
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      POSTGRES_PRISMA_URL: postgresql://course_fixture:isolated_ci_fixture_only@localhost:5432/course_fixture
+      POSTGRES_URL_NON_POOLING: postgresql://course_fixture:isolated_ci_fixture_only@localhost:5432/course_fixture
+      DATABASE_URL: file:/tmp/petsoft-ci.db
+      AUTH_SECRET: isolated-ci-fixture-not-a-deployment-secret
+      CANONICAL_URL: http://localhost:3000
+      ALLOW_TUTORIAL_SEED: '1'
+      TUTORIAL_SEED_PASSWORD: isolated_ci_fixture_password_2026
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+      with:
+        node-version: '24'
+        cache: npm
+        cache-dependency-path: ${{ matrix.project }}/package-lock.json
+    - run: npm ci --ignore-scripts
+    - run: npm audit --audit-level=low
+    - if: matrix.kind == 'next'
+      run: 'npx --no-install prisma generate
+
+        npx --no-install prisma db push
+
+        npx --no-install prisma db seed'
+    - if: matrix.kind != 'tests'
+      run: npm run build
+    - if: matrix.kind == 'tests'
+      run: npm test
+    - if: matrix.kind == 'next' || matrix.kind == 'app'
+      run: npm run lint --if-present

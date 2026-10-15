@@ -32,7 +32,7 @@ export function useFeedbackItems() {
 
         const data = await response.json();
         setFeedbackItems(data.feedbacks);
-      } catch (error) {
+      } catch {
         setErrorMessage("Something went wrong. Please try again later.");
       }
 

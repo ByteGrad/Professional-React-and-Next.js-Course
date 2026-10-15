@@ -2,6 +2,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+if (process.env.NODE_ENV === "production" || process.env.ALLOW_TUTORIAL_SEED !== "1") {
+  throw new Error("Tutorial seeding is disabled. Use an isolated development database and set ALLOW_TUTORIAL_SEED=1.");
+}
+
 const events = [
   {
     id: 1,

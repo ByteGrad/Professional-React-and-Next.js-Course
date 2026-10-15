@@ -1,4 +1,4 @@
-import { useActiveIdContext, useJobItemsContext } from "../lib/hooks";
+import { useActiveIdContext } from "../lib/hooks";
 import { JobItem } from "../lib/types";
 import JobListItem from "./JobListItem";
 import Spinner from "./Spinner";

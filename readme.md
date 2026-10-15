@@ -1,3 +1,9 @@
+> **Educational code and security — updated 15 October 2026**
+>
+> These examples teach selected concepts and may omit controls required for production. Dependencies and runtimes become outdated over time. Before running or reusing an example, read [SECURITY.md](SECURITY.md), check current advisories, keep dependencies on supported patched versions, and test upgrades. Do not expose development servers or use real customer data or production credentials in a tutorial environment.
+>
+> Except as separately agreed or required by applicable law, the examples are provided as-is, without warranties. To the maximum extent permitted by applicable law, ByteGrad Sp. z o.o. and the authors disclaim liability for losses arising from use of these examples. Nothing limits mandatory consumer rights or liability that cannot lawfully be excluded. This notice does not change your course purchase agreement or grant rights to third-party assets.
+
 # Professional React & Next.js Course ([See course here](https://bytegrad.com/courses/professional-react-nextjs))
 
 **Welcome to the course!** Here, you can find all the resources you will need.

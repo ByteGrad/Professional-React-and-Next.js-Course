@@ -1,0 +1,13 @@
+{
+  "name": "bytegrad-react-course-security-checks",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.cjs"
+  },
+  "devDependencies": {
+    "typescript": "6.0.2"
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0"
+  }
+}

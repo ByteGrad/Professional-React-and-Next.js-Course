@@ -7,16 +7,17 @@ import { capitalize } from "@/lib/utils";
 import { z } from "zod";
 
 type Props = {
-  params: {
+  params: Promise<{
     city: string;
-  };
+  }>;
 };
 
 type EventsPageProps = Props & {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export function generateMetadata({ params }: Props): Metadata {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const city = params.city;
 
   return {
@@ -26,10 +27,9 @@ export function generateMetadata({ params }: Props): Metadata {
 
 const pageNumberSchema = z.coerce.number().int().positive().optional();
 
-export default async function EventsPage({
-  params,
-  searchParams,
-}: EventsPageProps) {
+export default async function EventsPage(props: EventsPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const city = params.city;
   const parsedPage = pageNumberSchema.safeParse(searchParams.page);
   if (!parsedPage.success) {

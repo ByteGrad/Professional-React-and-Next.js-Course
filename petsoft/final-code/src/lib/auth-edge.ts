@@ -50,7 +50,7 @@ export const nextAuthEdgeConfig = {
       return false;
     },
     jwt: async ({ token, user, trigger }) => {
-      if (user) {
+      if (user?.id) {
         // on sign in
         token.userId = user.id;
         token.email = user.email!;

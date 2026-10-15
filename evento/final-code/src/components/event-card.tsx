@@ -10,7 +10,7 @@ type EventCardProps = {
   event: EventoEvent;
 };
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 export default function EventCard({ event }: EventCardProps) {
   const ref = useRef(null);
@@ -27,9 +27,7 @@ export default function EventCard({ event }: EventCardProps) {
       className="flex-1 basis-80 h-[380px] max-w-[500px]"
       href={`/event/${event.slug}`}
       style={{
-        // @ts-ignore
         scale: scaleProgress,
-        // @ts-ignore
         opacity: opacityProgress,
       }}
       initial={{

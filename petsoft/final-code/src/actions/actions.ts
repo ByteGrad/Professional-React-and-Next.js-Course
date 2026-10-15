@@ -1,8 +1,7 @@
 "use server";
 
-import { auth, signIn, signOut } from "@/lib/auth-no-edge";
+import { signIn, signOut } from "@/lib/auth-no-edge";
 import prisma from "@/lib/db";
-import { sleep } from "@/lib/utils";
 import { authSchema, petFormSchema, petIdSchema } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
@@ -10,8 +9,7 @@ import { redirect } from "next/navigation";
 import { checkAuth, getPetById } from "@/lib/server-utils";
 import { Prisma } from "@prisma/client";
 import { AuthError } from "next-auth";
-
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import { getStripe } from "@/lib/stripe";
 
 // --- user actions ---
 
@@ -23,7 +21,7 @@ export async function logIn(prevState: unknown, formData: unknown) {
   }
 
   try {
-    await signIn("credentials", formData);
+    await signIn("credentials", { ...Object.fromEntries(formData), redirectTo: "/app/dashboard" });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -86,7 +84,7 @@ export async function signUp(prevState: unknown, formData: unknown) {
     };
   }
 
-  await signIn("credentials", formData);
+  await signIn("credentials", { ...Object.fromEntries(formData), redirectTo: "/app/dashboard" });
 }
 
 export async function logOut() {
@@ -161,7 +159,7 @@ export async function editPet(petId: unknown, newPetData: unknown) {
       },
       data: validatedPet.data,
     });
-  } catch (error) {
+  } catch {
     return {
       message: "Could not edit pet.",
     };
@@ -202,7 +200,7 @@ export async function deletePet(petId: unknown) {
         id: validatedPetId.data,
       },
     });
-  } catch (error) {
+  } catch {
     return {
       message: "Could not delete pet.",
     };
@@ -215,24 +213,27 @@ export async function deletePet(petId: unknown) {
 
 export async function createCheckoutSession() {
   // authentication check
-  const session = await checkAuth();
-
-  console.log(session.user.email);
+  const session = await checkAuth({ requireAccess: false });
+  const priceId = process.env.STRIPE_PRICE_ID;
+  const canonicalUrl = process.env.CANONICAL_URL;
+  if (!priceId || !canonicalUrl) throw new Error("Checkout is not configured.");
 
   // create checkout session
-  const checkoutSession = await stripe.checkout.sessions.create({
+  const checkoutSession = await getStripe().checkout.sessions.create({
     customer_email: session.user.email,
+    client_reference_id: session.user.id,
     line_items: [
       {
-        price: "price_1OfpJ7FIW685mC8GCahpbCed",
+        price: priceId,
         quantity: 1,
       },
     ],
     mode: "payment",
-    success_url: `${process.env.CANONICAL_URL}/payment?success=true`,
-    cancel_url: `${process.env.CANONICAL_URL}/payment?cancelled=true`,
+    success_url: `${canonicalUrl}/payment?success=true`,
+    cancel_url: `${canonicalUrl}/payment?cancelled=true`,
   });
 
   // redirect user
+  if (!checkoutSession.url) throw new Error("Checkout could not be created.");
   redirect(checkoutSession.url);
 }

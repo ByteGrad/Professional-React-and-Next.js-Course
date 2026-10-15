@@ -4,15 +4,15 @@ import { logIn, signUp } from "@/actions/actions";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import AuthFormBtn from "./auth-form-btn";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 
 type AuthFormProps = {
   type: "logIn" | "signUp";
 };
 
 export default function AuthForm({ type }: AuthFormProps) {
-  const [signUpError, dispatchSignUp] = useFormState(signUp, undefined);
-  const [logInError, dispatchLogIn] = useFormState(logIn, undefined);
+  const [signUpError, dispatchSignUp] = useActionState(signUp, undefined);
+  const [logInError, dispatchLogIn] = useActionState(logIn, undefined);
 
   return (
     <form action={type === "logIn" ? dispatchLogIn : dispatchSignUp}>

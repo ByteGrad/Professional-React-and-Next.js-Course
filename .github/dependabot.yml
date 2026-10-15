@@ -1,0 +1,23 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directories:
+  - /
+  - /corp-comment/final-code
+  - /evento/final-code
+  - /fancy-counter/final-code
+  - /petsoft/final-code
+  - /rmtdev/final-code
+  - /trekbag/final-code
+  - /word-analytics/final-code
+  schedule:
+    interval: weekly
+  groups:
+    routine-updates:
+      patterns:
+      - '*'
+  open-pull-requests-limit: 5
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: weekly
