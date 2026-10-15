@@ -6,7 +6,7 @@ The maintained examples deliberately deviate from the course recordings.
 
 - Next.js 16.4.1 and React 19.3.1 in Evento and PetSoft; asynchronous route props, current Proxy conventions and `useActionState`.
 - Vite 8.3.4 in the five Vite examples, current lockfiles/build tools, Prisma 6.19.3 and Tailwind CSS 4.3.3 in the database-backed projects.
-- Updated lint configuration and Framer Motion, corrected the rmtDev search context wiring and missing types, and removed network font downloads from the Next.js builds in favor of system fonts.
+- Migrated all seven projects to ESLint 10 and updated Framer Motion, corrected the rmtDev search context wiring and missing types, and removed network font downloads from the Next.js builds in favor of system fonts.
 - Patched transitive dependency overrides for `deepmerge-ts` and `postcss-selector-parser`. The old framework lint preset was replaced with general ESLint/TypeScript checks because it retained an unpatched transitive dependency. Reassess these choices as upstream dependencies change.
 
 ## PetSoft security changes
